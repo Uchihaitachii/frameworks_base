@@ -81,6 +81,7 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
 
     private boolean mIsBouncer;
     private boolean mIsDreaming;
+    private boolean mIsKeyguard;
     private boolean mIsCircleShowing;
 
     private boolean mDozeEnabled;
@@ -98,6 +99,9 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
     private LockPatternUtils mLockPatternUtils;
 
     private Timer mBurnInProtectionTimer;
+
+    private FODAnimation mFODAnimation;
+    private boolean mIsRecognizingAnimEnabled;
 
     private IFingerprintInscreenCallback mFingerprintInscreenCallback =
             new IFingerprintInscreenCallback.Stub() {
@@ -140,6 +144,11 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
             } else if (mBurnInProtectionTimer != null) {
                 mBurnInProtectionTimer.cancel();
             }
+        }
+
+        @Override
+        public void onKeyguardVisibilityChanged(boolean showing) {
+           mIsKeyguard = showing;
         }
 
         @Override
@@ -220,6 +229,7 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
         mDreamingMaxOffset = (int) (mSize * 0.1f);
 
         mHandler = new Handler(Looper.getMainLooper());
+        mFODAnimation = new FODAnimation(context, mPositionX, mPositionY);
 
         mParams.height = mSize;
         mParams.width = mSize;
@@ -297,6 +307,7 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
             return true;
         }
 
+        mHandler.post(() -> mFODAnimation.hideFODanimation());
         return false;
     }
 
@@ -367,6 +378,10 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
         dispatchPress();
 
         setImageDrawable(null);
+        mPressedView.setImageResource(R.drawable.fod_icon_pressed);
+        if (mIsKeyguard) {
+            mHandler.post(() -> mFODAnimation.showFODanimation());
+        }
         invalidate();
     }
 
@@ -374,6 +389,7 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
         mIsCircleShowing = false;
 
         setImageResource(R.drawable.fod_icon_default);
+        mHandler.post(() -> mFODAnimation.hideFODanimation());
         invalidate();
 
         dispatchRelease();
@@ -444,6 +460,7 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
         if (mIsDreaming) {
             mParams.x += mDreamingOffsetX;
             mParams.y += mDreamingOffsetY;
+            mFODAnimation.updateParams(mParams.y);
         }
 
         mWindowManager.updateViewLayout(this, mParams);
