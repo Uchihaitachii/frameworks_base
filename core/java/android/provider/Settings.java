@@ -5613,35 +5613,6 @@ public final class Settings {
         public static final Validator POCKET_JUDGE_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
-         * FOD icon picker
-         * @hide
-         */
-        public static final String FOD_ICON = "fod_icon";
-
-        /** @hide */
-        private static final Validator FOD_ICON_VALIDATOR = ANY_STRING_VALIDATOR;
-
-        /**
-         * FOD pressed state
-         * @hide
-         */
-        public static final String FOD_PRESSED_STATE = "fod_pressed_state";
-
-        /** @hide */
-        private static final Validator FOD_PRESSED_STATE_VALIDATOR =
-                new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
-
-        /**
-         * FOD recognizing animation
-         * @hide
-         */
-        public static final String FOD_RECOGNIZING_ANIMATION = "fod_recognizing_animation";
-
-        /** @hide */
-        private static final Validator FOD_RECOGNIZING_ANIMATION_VALIDATOR =
-                BOOLEAN_VALIDATOR;
-
-        /**
          * Whether to show heads up only for dialer and sms apps
          * @hide
          */
@@ -6054,10 +6025,6 @@ public final class Settings {
             CUSTOM_DEVICE_GESTURE_FEEDBACK_ENABLED,
             CUSTOM_DEVICE_FEATURE_SETTINGS,
             QS_BLUR,
-            FOD_ICON,
-            FOD_PRESSED_STATE,
-            FOD_RECOGNIZING_ANIMATION,
-            FOD_ANIM,
             LESS_BORING_HEADS_UP,
             STATUS_BAR_BRIGHTNESS_CONTROL,
             HEADSET_CONNECT_PLAYER,
