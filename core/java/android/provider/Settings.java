@@ -5649,7 +5649,7 @@ public final class Settings {
 
         /** @hide */
         private static final Validator FOD_ANIM_VALIDATOR =
-                new SettingsValidators.InclusiveIntegerRangeValidator(0, 13);
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 14);
 
         /**
          * Whether to show heads up only for dialer and sms apps
