@@ -5642,16 +5642,6 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
-         * FOD recognizing animation picker
-         * @hide
-         */
-        public static final String FOD_ANIM = "fod_anim";
-
-        /** @hide */
-        private static final Validator FOD_ANIM_VALIDATOR =
-                new SettingsValidators.InclusiveIntegerRangeValidator(0, 15);
-
-        /**
          * Whether to show heads up only for dialer and sms apps
          * @hide
          */
