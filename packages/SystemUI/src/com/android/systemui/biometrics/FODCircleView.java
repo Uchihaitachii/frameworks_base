@@ -482,7 +482,7 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
 
         if (mIsKeyguard) {
             mParams.x = mPositionX;
-            mParams.y = mPositionY - cutoutMaskedExtra;
+            mParams.y = mPositionY;
         }
 
         if (mIsDreaming) {
