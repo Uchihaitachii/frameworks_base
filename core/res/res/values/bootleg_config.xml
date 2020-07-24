@@ -31,7 +31,7 @@
     <bool name="config_proximityCheckOnWakeEnabledByDefault">false</bool>
 
     <!-- Whether to show a custom view for FOD -->
-    <bool name="config_needCustomFODView">false</bool>
+    <bool name="config_needCustomFODView">true</bool>
 
     <!-- Whether to allow process with media UID to access CameraServiceProxy -->
     <bool name="config_allowMediaUidForCameraServiceProxy">false</bool>
@@ -158,6 +158,6 @@
     <bool name="config_filterDisplayModes">false</bool>
 
     <!-- Default state for LiveDisplay -->
-    <bool name="config_liveDisplayAvailable">false</bool>
+    <bool name="config_liveDisplayAvailable">true</bool>
 
 </resources>
